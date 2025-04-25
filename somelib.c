@@ -4,20 +4,25 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+int uniqueId = 0;
+
 Node* CreateTask(Task task)
 {
     Node* newNode = (Node*)malloc(sizeof(Node));
     newNode->task = task;
     newNode->task.finished = "in-progress";
     newNode->next = NULL;
+    
+    // make id unique
+    newNode->task.id = uniqueId;
+    uniqueId++;
 
     return newNode;
 }
 
 void PrintTask(Task* task)
 {
-    printf("%s", task->name);
-    printf(" -> %s\n", task->description);
+    printf("%d %s -> %s\n", task->id, task->name, task->description);
 }
 
 void PrintAllTasks(Node* node)
@@ -66,7 +71,6 @@ char* GetWordOf(char str[], int wordNum)
         word[wordLength] = '\0';
         return word;
     }
-    // printf("not reached");
     return NULL;
 }
 
@@ -76,4 +80,26 @@ void AddTaskSuccess(Task* task)
     printf("name: %s\n", task->name);
     printf("description: %s\n", task->description);
     printf("\n");
+}
+
+void DeleteTask(Node *node, int id)
+{
+    Node *currNode = node;
+    Node *prevNode = NULL;
+    Node *delNode = NULL;
+
+    if (currNode == NULL)
+    {
+        return;
+    }
+    while (currNode)
+    {
+        prevNode = currNode;
+        if (currNode->task.id == id)
+            prevNode->next = currNode->next;
+        
+        delNode = currNode;
+        currNode = currNode->next;
+        free(delNode);
+    };
 }

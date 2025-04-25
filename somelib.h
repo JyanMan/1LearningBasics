@@ -3,6 +3,7 @@
 
 typedef struct Task
 {
+    int id;
     char *name;
     char *description;
     char *finished;
@@ -23,5 +24,7 @@ void PrintAllTasks(Node* node);
 char* GetWordOf(char str[], int wordNum);
 
 void AddTaskSuccess(Task* task);
+
+void DeleteTask(Node *node, int id);
 
 #endif

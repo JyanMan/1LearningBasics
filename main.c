@@ -8,7 +8,6 @@ int main()
 {
     Node* currNode = CreateTask((Task) { .name = "hello", .description = "try" });
     Node *node = currNode;
-    // currNode->next = CreateTask((Task) { .name = "again", .description = "noman" });
 
     char command[20];
 
@@ -44,6 +43,14 @@ int main()
             currNode->next = CreateTask(newTask);
             AddTaskSuccess(&newTask);
             currNode = currNode->next;
+        }
+        else if (strcmp("del", firstWord) == 0)
+        {
+            if (strlen(secondWord) == 1)
+            {
+                int value = firstWord - '0';
+                printf("%s %d\n" "workin", value);
+            }
         }
         else
         {
