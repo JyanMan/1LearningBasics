@@ -1,3 +1,6 @@
+#ifndef SOMELIB_H
+#define SOMELIB_H
+
 typedef struct Task
 {
     char *name;
@@ -20,3 +23,5 @@ void PrintAllTasks(Node* node);
 char* GetWordOf(char str[], int wordNum);
 
 void AddTaskSuccess(Task* task);
+
+#endif

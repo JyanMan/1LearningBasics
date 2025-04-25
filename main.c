@@ -4,8 +4,6 @@
 #include <stdbool.h>
 #include "somelib.h"
 
-#define varlen(x) sizeof(typeof(x))
-
 int main()
 {
     Node* currNode = CreateTask((Task) { .name = "hello", .description = "try" });
