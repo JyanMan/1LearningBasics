@@ -91,15 +91,10 @@ void DeleteTask(Node **node, Node **head, int id)
     Node *delNode = NULL;
 
     if (currNode == NULL)
-    {
         return;
-    }
+
     while (currNode)
     {
-        //you have a node in advance
-        //it checks if it is nul
-        //once prevnode finds it
-        //free the deleted node
         if ((currNode)->task.id != id)
         {
             prevNode = currNode;
@@ -107,7 +102,7 @@ void DeleteTask(Node **node, Node **head, int id)
             continue;
             // prevNode->next = currNode->next;
         }
-        printf("found with id %d -> %s\n", id, currNode->task.name);
+        printf("deleted task with id %d -> %s\n", id, currNode->task.name);
         if ((currNode)->next == NULL)
         {
             printf("%s\n", prevNode->task.name);
@@ -129,13 +124,6 @@ void DeleteTask(Node **node, Node **head, int id)
         currNode = currNode->next;
         prevNode->next = currNode;
         free(delNode);
-
         break;
-        // currNode = currNode->next;
-        // if (currNode->task.id == id)
-        //     prevNode->next = currNode->next;
-        
-        // delNode = currNode;
-        // free(delNode);
     };
 }

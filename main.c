@@ -57,7 +57,6 @@ int main()
                     continue;
                 }
                 DeleteTask(&node, &currNode, inputVal);
-                // printf("%lld %lld %lld\n", sizeof(value), sizeof(int), sizeof(char));
             }
             else
                 printf("invalid input");
