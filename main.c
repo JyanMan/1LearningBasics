@@ -40,6 +40,8 @@ int main()
                 continue;
             }
 
+            printf("currNode is -----> %s\n", currNode->task.name);
+
             currNode->next = CreateTask(newTask);
             AddTaskSuccess(&newTask);
             currNode = currNode->next;
@@ -48,9 +50,17 @@ int main()
         {
             if (strlen(secondWord) == 1)
             {
-                int value = firstWord - '0';
-                printf("%s %d\n" "workin", value);
+                int inputVal = secondWord[0] - '0';
+                if (inputVal < 0 || sizeof(inputVal) != sizeof(int))
+                {
+                    printf("invalid input");
+                    continue;
+                }
+                DeleteTask(&node, &currNode, inputVal);
+                // printf("%lld %lld %lld\n", sizeof(value), sizeof(int), sizeof(char));
             }
+            else
+                printf("invalid input");
         }
         else
         {

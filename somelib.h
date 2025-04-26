@@ -25,6 +25,6 @@ char* GetWordOf(char str[], int wordNum);
 
 void AddTaskSuccess(Task* task);
 
-void DeleteTask(Node *node, int id);
+void DeleteTask(Node **node, Node **head, int id);
 
 #endif

@@ -38,7 +38,8 @@ void PrintAllTasks(Node* node)
     {
         PrintTask(&temp->task);
         temp = temp->next;
-    };
+    }
+    printf("ended\n");
 }
 
 char* GetWordOf(char str[], int wordNum)
@@ -82,9 +83,10 @@ void AddTaskSuccess(Task* task)
     printf("\n");
 }
 
-void DeleteTask(Node *node, int id)
+void DeleteTask(Node **node, Node **head, int id)
 {
-    Node *currNode = node;
+    Node **mainNode = node;
+    Node *currNode = *node;
     Node *prevNode = NULL;
     Node *delNode = NULL;
 
@@ -94,12 +96,46 @@ void DeleteTask(Node *node, int id)
     }
     while (currNode)
     {
-        prevNode = currNode;
-        if (currNode->task.id == id)
-            prevNode->next = currNode->next;
-        
+        //you have a node in advance
+        //it checks if it is nul
+        //once prevnode finds it
+        //free the deleted node
+        if ((currNode)->task.id != id)
+        {
+            prevNode = currNode;
+            currNode = currNode->next;
+            continue;
+            // prevNode->next = currNode->next;
+        }
+        printf("found with id %d -> %s\n", id, currNode->task.name);
+        if ((currNode)->next == NULL)
+        {
+            printf("%s\n", prevNode->task.name);
+            prevNode->next = NULL;
+            *head = prevNode;
+            free(prevNode->next);
+            free(currNode);
+            break;
+        }
+        if (prevNode == NULL)
+        {
+            *node = (*node)->next;
+            free(*mainNode);
+            break;
+        }
+
+        //basically skip the currnode so it no longer is included;
         delNode = currNode;
         currNode = currNode->next;
+        prevNode->next = currNode;
         free(delNode);
+
+        break;
+        // currNode = currNode->next;
+        // if (currNode->task.id == id)
+        //     prevNode->next = currNode->next;
+        
+        // delNode = currNode;
+        // free(delNode);
     };
 }
